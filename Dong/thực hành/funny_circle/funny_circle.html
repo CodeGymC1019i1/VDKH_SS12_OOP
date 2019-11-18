@@ -24,27 +24,36 @@
         return 'rgb(' + red + ',' + blue + ',' + green + ')';
     }
 
+    // let x = Math.random() * innerHeight;
+    // let y = Math.random() * innerWidth;
+    let x = 0;
+    let y = 0;
+    let radius = Math.random() * 50;
+    let color = getRandomColor();
+    let ctx = document.getElementById('myCanvas').getContext('2d');
+
     function createCircle() {
-        let ctx = document.getElementById('myCanvas').getContext('2d');
-        let radius = Math.random() * 50;
-        let color = getRandomColor();
-        let x = Math.random() * innerHeight;
-        let y = Math.random() * innerWidth;
         let circle = new Circle(x, y, radius);
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
         ctx.beginPath();
         ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
         ctx.fillStyle = color;
         ctx.fill();
+        ctx.closePath();
+        x += Math.random()*50;
+        y += Math.random()*50;
+
     }
 
     function createMultiCircle() {
         for (let i = 0; i < 100; i++) {
             createCircle();
         }
-        window.requestAnimationFrame(createMultiCircle);
     }
-
-    createMultiCircle();
+    window.onload = function () {
+        // requestAnimationFrame(createCircle);
+        setInterval(createCircle, 100);
+    }
 </script>
 </body>
 </html>
