@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class circle</title>
+</head>
+<body>
+<script type="text/javascript">
+    let Circle = function (radius, color) {
+        this.radius = radius;
+
+        this.getRadius = function () {
+            return radius;
+        };
+
+        this.getArea = function () {
+            return Math.PI * Math.pow(radius, 2);
+        };
+    };
+
+    let circle1 = new Circle(2);
+    alert('hình tròn bán kính r = ' + circle1.getRadius() + ' có diện tích S = ' + circle1.getArea());
+    let circle2 = new Circle(4);
+    alert('hình tròn bán kính r = ' + circle2.getRadius() + ' có diện tích S = ' + circle2.getArea());
+</script>
+</body>
+</html>

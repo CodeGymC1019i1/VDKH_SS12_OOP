@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+</head>
+<body>
+<script type="text/javascript">
+    let Student = function (name, age, gender, mark=0) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.mark = mark;
+        this.getInfo = function () {
+            alert('tên: '+this.name+'; tuổi:  '+ this.age+'; giới tính: ' + this.gender+'; điểm thi: '+this.mark);
+        };
+    };
+    let students = [];
+    let info = [
+      ['Hoàn','25', 'male', 8],
+      ['Vọng','18', 'male',6],
+      ['Dân', '18', 'undefined', 7]
+    ];
+    for (let i = 0; i < info.length ; i++) {
+        let student = new Student(info[i][0],info[i][1],info[i][2], info[i][3]);
+        students.push(student);
+    }
+    console.log(students);
+    for (let i = 0; i <students.length ; i++) {
+        if(students[i].name === 'Hoàn'){
+            students[i].getInfo();
+        }
+    }
+
+</script>
+</body>
+</html>
