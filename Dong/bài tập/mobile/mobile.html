@@ -2,54 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Class Mobile</title>
+    <title>Title</title>
+    <script src="mobile.js"></script>
 </head>
 <body>
-<script type="text/javascript">
-    let Mobile = function (battery, messageDrafting, messageInbox, messageSent ) {
-        this.battery = battery;
-        this.messageDrafting = messageDrafting;
-        this.messageInbox = messageInbox;
-        this.messageSent = messageSent;
-        this.getBattery = function () {
-            return this.battery;
-        };
-        this.getMessageDrafting = function () {
-            return this.messageDrafting;
-        };
-        this.getMessageInbox = function () {
-            return this.messageInbox;
-        };
-        this.getMessageSent = function () {
-            return this.messageSent;
-        };
-        this.setBattery = function (battery) {
-            this.battery = battery;
-        };
-        this.setMessageDrafting = function (messageDrafting){
-          this.messageDrafting = messageDrafting;
-        };
-        this.setMessageInbox = function (messageInbox) {
-            this.messageInbox = messageInbox;
-        };
-        this.setMessageSent = function (messageSent) {
-            this.messageSent = messageSent;
-        };
+<div class="mobile">
+    <div class="name" id="name-iphone">Iphone</div>
+    <textarea class="inbox" disabled placeholder="inbox" id="inbox-iphone"></textarea>
+    <textarea class="outbox" disabled placeholder="outbox" id="outbox-iphone"></textarea>
+    <input type="text" id="msg-iphone" class="msg" placeholder="input msg" oninput="iphone.writeMsg(this.value)">
+    <button type="button" onclick="sendMsg(iphone, samsung)">send</button>
+</div>
 
-        this.writingMessage = function () {
+<div class="mobile">
+    <div class="name-samsung">Samsung</div>
+    <textarea class="inbox" disabled placeholder="inbox" id="inbox-samsung"></textarea>
+    <textarea class="outbox" disabled placeholder="outbox" id="outbox-samsung"></textarea>
+    <input type="text" id="msg-samsung" class="msg" placeholder="input msg" oninput="samsung.writeMsg(this.value)">
+    <button type="button" onclick="sendMsg(samsung, iphone)">send</button>
+</div>
 
-        };
-        this.sentMessage = function () {
-            
-        };
-        this.receiveMessage = function () {
-            
-        };
-        this.readMessage = function () {
-            
-        }
+<script>
+    let iphone = new Mobile('Iphone 11 pro max', 'iphone');
+    let samsung = new Mobile('Samsung note 10 plus', 'samsung');
 
+    function sendMsg(mobile1, mobile2) {
+        mobile1.sendMsg(mobile2);
+        displayMsg(mobile1);
+        displayMsg(mobile2);
     }
+
+    function displayMsg(mobile) {
+        // document.getElementById('name-'+mobile.type).innerHTML = mobile.name;
+        document.getElementById('inbox-' + mobile.type).value = mobile.inbox;
+        document.getElementById('outbox-' + mobile.type).value = mobile.outbox;
+        document.getElementById('msg-' + mobile.type).value = '';
+        document.getElementById('msg-' + mobile.type).focus();
+    }
+
+
+    console.log(iphone)
+    console.log(samsung)
+    // iphone.writeMsg('hello samsung');
+    // iphone.sendMsg(samsung);
+    // samsung.writeMsg('bye');
+    // samsung.sendMsg(iphone);
 </script>
 </body>
 </html>
